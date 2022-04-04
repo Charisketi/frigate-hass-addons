@@ -20,7 +20,7 @@ FROM base as build_libedgetpu
 RUN git clone https://github.com/google-coral/libedgetpu.git
 RUN cd libedgetpu && git checkout release-grouper
 RUN echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" > /etc/apt/sources.list.d/bazel.list \
-    && curl -s https://storage.googleapis.com/bazel-apt/doc/apt-key.pub.gpg | apt-key add --no-cache \
+    && curl -s https://storage.googleapis.com/bazel-apt/doc/apt-key.pub.gpg | apt-key add - \
     && apt-get -qq update \
     && apt-get -qq install bazel=3.2.0
 RUN cd /libedgetpu && bazel fetch --experimental_repo_remote_exec @coral_crosstool//...
